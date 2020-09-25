@@ -15,15 +15,18 @@ function onRequest (request, response){
 
   if( request.method == 'GET' && request.url == '/'){
       response.writeHead(200, {"Content-Type": "text/html"});
-  fs.createReadStream("./index.html").pipe(response);
+      fs.createReadStream("./index.html","validation.html").pipe(response);
+
   } else if (request.method == 'GET' && request.url == '/styles.css'){
       response.writeHead(200, {"Content-Type": "text/css"});
       fs.createReadStream('./styles.css').pipe(response);
-  } else if (request.method == 'GET' && request.url == '/Server.js') {
+
+  } else if (request.method == 'GET' && request.url == '/Javascript.js') {
       response.writeHead(200, {"Content-Type": "application/javascript"});
-      fs.createReadStream('./Server.js').pipe(response);
-  } else{
-      send404Response(response);
+      fs.createReadStream('./Javascript.js').pipe(response);
+  }else
+  {
+   send404Response(response);
   }
 }
 
